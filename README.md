@@ -44,3 +44,7 @@ Edite `src/i18n/translations.ts` para alterar textos. Português é o idioma ini
 ## GitHub Pages
 
 Publique o repositório no GitHub com branch `main`. Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions**. O workflow `.github/workflows/deploy.yml` executa lint, typecheck, build e publica `dist/` a cada push. `base: './'` suporta páginas de usuário e de projeto. As rotas de detalhes usam `/#/projects/:slug`.
+
+O workflow usa Node.js 22 e instala as versões do `package-lock.json` com `npm ci`. A verificação de tipos acontece dentro de `npm run build`, antes do Vite gerar o site.
+
+Após enviar os arquivos para a branch `main`, acompanhe **Actions → Deploy to GitHub Pages**. Também é possível iniciar a publicação manualmente em **Run workflow**, selecionando `main`. O endereço publicado aparece em **Settings → Pages** e no ambiente `github-pages` da execução. Não é necessário versionar `dist/` nem criar uma branch `gh-pages`.
