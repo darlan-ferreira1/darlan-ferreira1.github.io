@@ -43,7 +43,7 @@ Edite `src/i18n/translations.ts` para alterar textos. Português é o idioma ini
 
 ## GitHub Pages
 
-Publique o repositório no GitHub com branch `main`. Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions**. O workflow `.github/workflows/deploy.yml` executa lint, typecheck, build e publica `dist/` a cada push. `base: './'` suporta páginas de usuário e de projeto. As rotas de detalhes usam `/#/projects/:slug`.
+O repositório de publicação é `darlan-ferreira1/darlan-ferreira1.github.io`, na branch `main`, e o site fica em https://darlan-ferreira1.github.io/. Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions**. O workflow `.github/workflows/deploy.yml` executa lint, typecheck, build e publica `dist/` a cada push. `base: '/'` corresponde à publicação na raiz do domínio. As rotas de detalhes usam `/#/projects/:slug`.
 
 O workflow usa Node.js 22 e instala as versões do `package-lock.json` com `npm ci`. A verificação de tipos acontece dentro de `npm run build`, antes do Vite gerar o site.
 
