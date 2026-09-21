@@ -1,0 +1,46 @@
+# Portfólio — Darlan Ferreira
+
+Portfólio profissional estático para candidaturas a vagas de desenvolvimento júnior e estágio remunerado.
+
+## Stack e estrutura
+
+React, TypeScript, Vite, React Router, CSS e ESLint. Sem backend. `HashRouter` preserva as páginas de projetos após refresh no GitHub Pages.
+
+- `src/components/`: layout e card de projeto
+- `src/pages/`: home e página reutilizável de detalhes
+- `src/data/projects.ts`: projetos e campos opcionais
+- `src/data/links.ts`: e-mail e redes
+- `src/i18n/translations.ts`: traduções PT, EN e ES
+- `src/hooks/`: tema e idioma com `localStorage`
+- `src/styles/`: estilos responsivos
+- `src/assets/`: imagens futuras
+
+## Instalação e execução
+
+Node.js 20.19+ ou 22.12+.
+
+```bash
+npm install
+npm run dev
+```
+
+## Qualidade e build
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run preview
+```
+
+O build é gerado em `dist/`.
+
+## Edição
+
+Edite `src/data/projects.ts` para adicionar projetos. Os campos opcionais só são renderizados quando preenchidos. Para screenshots, coloque imagens em `public/` e use caminhos relativos à base do site. O projeto Java contém apenas dados confirmados e um aviso de rascunho.
+
+Edite `src/i18n/translations.ts` para alterar textos. Português é o idioma inicial. Tema inicial segue `prefers-color-scheme`; as preferências ficam no `localStorage`.
+
+## GitHub Pages
+
+Publique o repositório no GitHub com branch `main`. Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions**. O workflow `.github/workflows/deploy.yml` executa lint, typecheck, build e publica `dist/` a cada push. `base: './'` suporta páginas de usuário e de projeto. As rotas de detalhes usam `/#/projects/:slug`.
