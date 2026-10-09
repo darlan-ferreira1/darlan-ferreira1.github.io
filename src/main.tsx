@@ -21,7 +21,7 @@ function ScrollManager() {
 function PageTitle({ language }: { language: 'pt' | 'en' | 'es' }) {
   const { pathname } = useLocation()
   useEffect(() => {
-    document.title = `${pathname.startsWith('/projects/') ? `${translations[language].projects.title} | ` : ''}Darlan Ferreira | Software Developer`
+    document.title = `${pathname.startsWith('/projects/') ? `${translations[language].projects.title} | ` : ''}Software Developer | Darlan Ferreira`
   }, [language, pathname])
   return null
 }
