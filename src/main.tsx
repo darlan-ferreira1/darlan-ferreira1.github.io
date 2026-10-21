@@ -6,7 +6,7 @@ import { Layout } from './components/Layout'
 import { Home } from './pages/Home'
 import { ProjectDetails } from './pages/ProjectDetails'
 import { usePreferences } from './hooks/usePreferences'
-import { translations } from './i18n/translations'
+import { projects } from './data/projects'
 import './styles/main.css'
 
 function ScrollManager() {
@@ -21,7 +21,8 @@ function ScrollManager() {
 function PageTitle({ language }: { language: 'pt' | 'en' | 'es' }) {
   const { pathname } = useLocation()
   useEffect(() => {
-    document.title = `${pathname.startsWith('/projects/') ? `${translations[language].projects.title} | ` : ''}Software Developer | Darlan Ferreira`
+    const project = projects.find(item => pathname === `/projects/${item.slug}`)
+    document.title = `${project ? `${project.name[language]} | ` : ''}Software Developer | Darlan Ferreira`
   }, [language, pathname])
   return null
 }
