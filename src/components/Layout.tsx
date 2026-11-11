@@ -24,7 +24,7 @@ export function Layout({ language, setLanguage, theme, toggleTheme, children }: 
     <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); const main = document.getElementById('main'); main?.setAttribute('tabindex', '-1'); main?.focus() }}>{t.skip}</a>
     <header className="site-header">
       <div className="shell header-inner">
-        <Link className="brand" to="/" aria-label="Darlan Ferreira — Home">DF<span className="brand-dot">.</span></Link>
+        <Link className="brand" to="/" aria-label="Darlan Ferreira — Home"><svg className="brand-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg><span>Darlan Ferreira</span></Link>
         <button className="menu-toggle" type="button" aria-label={t.menu} aria-expanded={menuOpen} aria-controls="primary-nav" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
         <nav id="primary-nav" className={menuOpen ? 'primary-nav open' : 'primary-nav'} aria-label="Primary">
           {nav.map(([id, label]) => <Link key={id} to={`/#${id}`} onClick={() => { setMenuOpen(false); if (location.pathname === '/') document.getElementById(id)?.scrollIntoView() }}>{label}</Link>)}
