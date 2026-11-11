@@ -1,4 +1,10 @@
-import type { ContentBlock, ContentSection } from '../data/projects'
+import { Fragment } from 'react'
+import type { ContentBlock, ContentSection, Screenshot } from '../data/projects'
+import type { Language } from '../i18n/translations'
+
+export function Figure({ image, language }: { image: Screenshot; language: Language }) {
+  return <figure className="screenshot"><img src={image.src} alt={image.alt[language]} loading="lazy" /><figcaption>{image.alt[language]}</figcaption></figure>
+}
 
 function Inline({ text }: { text: string }) {
   return <>{text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).map((part, i) =>
@@ -15,6 +21,9 @@ function Block({ block }: { block: ContentBlock }) {
   }
 }
 
-export function ContentSections({ sections }: { sections: ContentSection[] }) {
-  return <>{sections.map(section => <section key={section.title}><h2>{section.title}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} />)}</section>)}</>
+export function ContentSections({ sections, screenshots = [], language }: { sections: ContentSection[]; screenshots?: Screenshot[]; language: Language }) {
+  return <>{sections.map((section, s) => <section key={section.title}><h2>{section.title}</h2>{section.blocks.map((block, i) => {
+    const images = screenshots.filter(img => img.at?.section === s && img.at.block === i)
+    return <Fragment key={i}><Block block={block} />{images.map(img => <Figure key={img.src} image={img} language={language} />)}</Fragment>
+  })}</section>)}</>
 }

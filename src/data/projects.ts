@@ -17,6 +17,12 @@ export interface ContentSection {
   blocks: ContentBlock[]
 }
 
+export interface Screenshot {
+  src: string
+  alt: Localized
+  at?: { section: number; block: number }
+}
+
 export interface Project {
   slug: string
   name: Localized
@@ -33,7 +39,9 @@ export interface Project {
   technicalDecisions?: Localized
   challenges?: Localized
   content?: Record<Language, ContentSection[]>
-  screenshots?: { src: string; alt: Localized }[]
+  // `at`: mostra a imagem no meio do texto, depois do bloco `block` da seção `section` (índices de `content`).
+  // Sem `at`, a imagem vai para a galeria no final da página.
+  screenshots?: Screenshot[]
   video?: string
   demo?: string
   github?: string
@@ -65,18 +73,18 @@ export const projects: Project[] = [
     technologies: ['React 19', 'TypeScript', 'Vite', 'Three.js', 'WebXR', 'MediaPipe', 'Tauri 2', 'PWA', 'Playwright', 'GitHub Actions'],
     content: claraJsContent,
     screenshots: [
-      { src: '/projetos/clara-js/galeria.jpg', alt: { pt: 'Galeria do CLARA.js no computador', en: 'CLARA.js gallery on desktop', es: 'Galería de CLARA.js en el ordenador' } },
-      { src: '/projetos/clara-js/deskScreens.png', alt: { pt: 'Tela inicial e Galeria filtrada por Física, no computador', en: 'Home screen and Gallery filtered by Physics, on desktop', es: 'Pantalla inicial y Galería filtrada por Física, en el ordenador' } },
-      { src: '/projetos/clara-js/mobileScreens.png', alt: { pt: 'Tela inicial e Galeria no celular', en: 'Home screen and Gallery on a phone', es: 'Pantalla inicial y Galería en el móvil' } },
-      { src: '/projetos/clara-js/deskLancamentoOb.png', alt: { pt: 'Lançamento de Projétil no computador, com alcance, altura máxima e tempo de voo', en: 'Projectile Motion on desktop, with range, maximum height and flight time', es: 'Lanzamiento de Proyectil en el ordenador, con alcance, altura máxima y tiempo de vuelo' } },
-      { src: '/projetos/clara-js/telasMobileExpsInterativos.png', alt: { pt: 'Dupla Hélice de DNA, Ondas Mecânicas e Modelo de Bohr no celular', en: 'DNA Double Helix, Mechanical Waves and Bohr Model on a phone', es: 'Doble Hélice de ADN, Ondas Mecánicas y Modelo de Bohr en el móvil' } },
-      { src: '/projetos/clara-js/teoria.jpg', alt: { pt: 'Geometria Molecular com o painel Teoria aberto', en: 'Molecular Geometry with the Theory panel open', es: 'Geometría Molecular con el panel Teoría abierto' } },
-      { src: '/projetos/clara-js/teoriaComoFoiFeito.png', alt: { pt: 'Painéis Teoria e Como foi feito do experimento de Ondas Mecânicas', en: 'Theory and How it was made panels of the Mechanical Waves experiment', es: 'Paneles Teoría y Cómo se hizo del experimento de Ondas Mecánicas' } },
-      { src: '/projetos/clara-js/museu.jpg', alt: { pt: 'Museu Virtual: o salão com uma porta para cada experimento e a sala interativa da Geometria Molecular, com o painel de ajustes aberto', en: 'Virtual Museum: the hall with a door for each experiment and the Molecular Geometry interactive room, with the settings panel open', es: 'Museo Virtual: la sala principal con una puerta para cada experimento y la sala interactiva de Geometría Molecular, con el panel de ajustes abierto' } },
-      { src: '/projetos/clara-js/ra.jpg', alt: { pt: 'Realidade aumentada no celular: ajustes antes de começar, retícula sobre a mesa e o átomo posicionado e ampliado com a pinça', en: 'Augmented reality on a phone: settings before starting, the reticle on the desk, and the atom placed and enlarged with a pinch', es: 'Realidad aumentada en el móvil: ajustes antes de empezar, la retícula sobre la mesa y el átomo colocado y ampliado con el gesto de pinza' } },
-      { src: '/projetos/clara-js/RAEspiral.jpg', alt: { pt: 'Dupla Hélice de DNA em realidade aumentada, no meio de uma sala', en: 'DNA Double Helix in augmented reality, in the middle of a room', es: 'Doble Hélice de ADN en realidad aumentada, en medio de una habitación' } },
-      { src: '/projetos/clara-js/rv.jpg', alt: { pt: 'Dupla Hélice de DNA em realidade virtual no celular, com uma imagem para cada olho', en: 'DNA Double Helix in virtual reality on a phone, with one image for each eye', es: 'Doble Hélice de ADN en realidad virtual en el móvil, con una imagen para cada ojo' } },
-      { src: '/projetos/clara-js/RVquimica.jpg', alt: { pt: 'Modelo de Bohr do silício em realidade virtual no celular', en: 'Bohr model of silicon in virtual reality on a phone', es: 'Modelo de Bohr del silicio en realidad virtual en el móvil' } },
+      { src: '/projetos/clara-js/galeria.jpg', alt: { pt: 'Galeria do CLARA.js no computador', en: 'CLARA.js gallery on desktop', es: 'Galería de CLARA.js en el ordenador' }, at: { section: 2, block: 1 } },
+      { src: '/projetos/clara-js/deskScreens.png', alt: { pt: 'Tela inicial e Galeria filtrada por Física, no computador', en: 'Home screen and Gallery filtered by Physics, on desktop', es: 'Pantalla inicial y Galería filtrada por Física, en el ordenador' }, at: { section: 2, block: 1 } },
+      { src: '/projetos/clara-js/mobileScreens.png', alt: { pt: 'Tela inicial e Galeria no celular', en: 'Home screen and Gallery on a phone', es: 'Pantalla inicial y Galería en el móvil' }, at: { section: 2, block: 1 } },
+      { src: '/projetos/clara-js/deskLancamentoOb.png', alt: { pt: 'Lançamento de Projétil no computador, com alcance, altura máxima e tempo de voo', en: 'Projectile Motion on desktop, with range, maximum height and flight time', es: 'Lanzamiento de Proyectil en el ordenador, con alcance, altura máxima y tiempo de vuelo' }, at: { section: 3, block: 0 } },
+      { src: '/projetos/clara-js/telasMobileExpsInterativos.png', alt: { pt: 'Dupla Hélice de DNA, Ondas Mecânicas e Modelo de Bohr no celular', en: 'DNA Double Helix, Mechanical Waves and Bohr Model on a phone', es: 'Doble Hélice de ADN, Ondas Mecánicas y Modelo de Bohr en el móvil' }, at: { section: 3, block: 0 } },
+      { src: '/projetos/clara-js/teoria.jpg', alt: { pt: 'Geometria Molecular com o painel Teoria aberto', en: 'Molecular Geometry with the Theory panel open', es: 'Geometría Molecular con el panel Teoría abierto' }, at: { section: 1, block: 2 } },
+      { src: '/projetos/clara-js/teoriaComoFoiFeito.png', alt: { pt: 'Painéis Teoria e Como foi feito do experimento de Ondas Mecânicas', en: 'Theory and How it was made panels of the Mechanical Waves experiment', es: 'Paneles Teoría y Cómo se hizo del experimento de Ondas Mecánicas' }, at: { section: 1, block: 2 } },
+      { src: '/projetos/clara-js/museu.jpg', alt: { pt: 'Museu Virtual: o salão com uma porta para cada experimento e a sala interativa da Geometria Molecular, com o painel de ajustes aberto', en: 'Virtual Museum: the hall with a door for each experiment and the Molecular Geometry interactive room, with the settings panel open', es: 'Museo Virtual: la sala principal con una puerta para cada experimento y la sala interactiva de Geometría Molecular, con el panel de ajustes abierto' }, at: { section: 2, block: 3 } },
+      { src: '/projetos/clara-js/ra.jpg', alt: { pt: 'Realidade aumentada no celular: ajustes antes de começar, retícula sobre a mesa e o átomo posicionado e ampliado com a pinça', en: 'Augmented reality on a phone: settings before starting, the reticle on the desk, and the atom placed and enlarged with a pinch', es: 'Realidad aumentada en el móvil: ajustes antes de empezar, la retícula sobre la mesa y el átomo colocado y ampliado con el gesto de pinza' }, at: { section: 2, block: 7 } },
+      { src: '/projetos/clara-js/RAEspiral.jpg', alt: { pt: 'Dupla Hélice de DNA em realidade aumentada, no meio de uma sala', en: 'DNA Double Helix in augmented reality, in the middle of a room', es: 'Doble Hélice de ADN en realidad aumentada, en medio de una habitación' }, at: { section: 2, block: 7 } },
+      { src: '/projetos/clara-js/rv.jpg', alt: { pt: 'Dupla Hélice de DNA em realidade virtual no celular, com uma imagem para cada olho', en: 'DNA Double Helix in virtual reality on a phone, with one image for each eye', es: 'Doble Hélice de ADN en realidad virtual en el móvil, con una imagen para cada ojo' }, at: { section: 2, block: 9 } },
+      { src: '/projetos/clara-js/RVquimica.jpg', alt: { pt: 'Modelo de Bohr do silício em realidade virtual no celular', en: 'Bohr model of silicon in virtual reality on a phone', es: 'Modelo de Bohr del silicio en realidad virtual en el móvil' }, at: { section: 2, block: 9 } },
     ],
     demo: 'https://darlan-ferreira1.github.io/CLARA.js/',
     github: 'https://github.com/darlan-ferreira1/CLARA.js',
