@@ -41,6 +41,8 @@ export interface Project {
   content?: Record<Language, ContentSection[]>
   // `at`: mostra a imagem no meio do texto, depois do bloco `block` da seção `section` (índices de `content`).
   // Sem `at`, a imagem vai para a galeria no final da página.
+  // Capa do card na página inicial: 16:9 (ex.: 1600×900), recortada a partir do topo.
+  cover?: string
   screenshots?: Screenshot[]
   video?: string
   demo?: string
@@ -72,6 +74,7 @@ export const projects: Project[] = [
     status: { pt: 'Publicado', en: 'Live', es: 'Publicado' },
     technologies: ['React 19', 'TypeScript', 'Vite', 'Three.js', 'WebXR', 'MediaPipe', 'Tauri 2', 'PWA', 'Playwright', 'GitHub Actions'],
     content: claraJsContent,
+    cover: '/projetos/clara-js/capa.jpg',
     screenshots: [
       { src: '/projetos/clara-js/galeria.jpg', alt: { pt: 'Galeria do CLARA.js no computador', en: 'CLARA.js gallery on desktop', es: 'Galería de CLARA.js en el ordenador' }, at: { section: 2, block: 1 } },
       { src: '/projetos/clara-js/deskScreens.png', alt: { pt: 'Tela inicial e Galeria filtrada por Física, no computador', en: 'Home screen and Gallery filtered by Physics, on desktop', es: 'Pantalla inicial y Galería filtrada por Física, en el ordenador' }, at: { section: 2, block: 1 } },

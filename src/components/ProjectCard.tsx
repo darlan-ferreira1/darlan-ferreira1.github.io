@@ -5,9 +5,22 @@ import { translations } from '../i18n/translations'
 
 export function ProjectCard({ project, language }: { project: Project; language: Language }) {
   const t = translations[language].projects
-  return <article className={project.featured ? 'project-card featured-card' : 'project-card'}>
-    <div className="card-top"><span className="eyebrow">{project.featured ? t.featured : t.kind}</span><span className="status"><span aria-hidden="true" className="status-dot" />{project.status[language]}</span></div>
-    <div className="project-symbol" aria-hidden="true">{'{ }'}</div>
-    <div className="card-content"><h3>{project.name[language]}</h3>{project.subtitle && <p className="card-subtitle">{project.subtitle[language]}</p>}<p>{project.summary[language]}</p><ul className="tags" aria-label={translations[language].technologies.title}>{project.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul><Link className="text-link" to={`/projects/${project.slug}`}>{t.details}<span aria-hidden="true"> ↗</span></Link></div>
+  const detail = `/projects/${project.slug}`
+  return <article className="project-card">
+    <Link className="card-cover" to={detail} tabIndex={-1} aria-hidden="true">
+      {project.cover ? <img src={project.cover} alt="" loading="lazy" /> : <span className="card-cover-placeholder">{'{ }'}</span>}
+    </Link>
+    <div className="card-body">
+      <h3><Link to={detail}>{project.name[language]}</Link></h3>
+      <p className="card-tech">{project.technologies.join(' · ')}</p>
+      <p className="card-summary">{project.summary[language]}</p>
+      {project.context && <p className="card-context">{project.context[language]}</p>}
+      <ul className="card-meta">
+        <li><Link to={detail}>{t.details}</Link></li>
+        {project.github && <li><a href={project.github} target="_blank" rel="noreferrer">{t.source}</a></li>}
+        {project.demo && <li><a href={project.demo} target="_blank" rel="noreferrer">{t.demo}</a></li>}
+        <li>{project.status[language]}</li>
+      </ul>
+    </div>
   </article>
 }
